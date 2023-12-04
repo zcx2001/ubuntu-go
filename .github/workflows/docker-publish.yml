@@ -2,7 +2,10 @@ name: Docker Publish
 
 on:
   push:
-    tags: [ 'v*.*.*' ]
+    paths-ignore:
+      - '.github/**'
+  schedule:
+    - cron: '1 1 1 * *'  
 
 jobs:
   build:
