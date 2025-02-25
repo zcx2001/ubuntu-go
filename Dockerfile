@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
 ARG RUNNER=local
 
@@ -11,6 +11,7 @@ ENV LC_ALL en_US.UTF-8
 
 RUN if [ "${RUNNER}" != "github" ]; then \
         sed -i -E 's/(archive|security|ports).ubuntu.(org|com)/mirrors.aliyun.com/g' /etc/apt/sources.list; \
+        sed -i -E 's/(archive|security|ports).ubuntu.(org|com)/mirrors.aliyun.com/g' /etc/apt/sources.list.d/ubuntu.sources; \
     fi \ 
     && apt-get update && apt-get upgrade -y  \
     && apt-get install -y --no-install-recommends \
